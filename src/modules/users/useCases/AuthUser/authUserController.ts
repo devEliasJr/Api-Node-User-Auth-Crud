@@ -9,7 +9,8 @@ export class AuthUserController {
     const authUserUseCase = new AuthUserUseCase();
 
     const result = await authUserUseCase.execute({ email, password });
+    const { user, acess_token } = result;
 
-    return res.json({ result });
+    return res.json({ user, acess_token });
   }
 }

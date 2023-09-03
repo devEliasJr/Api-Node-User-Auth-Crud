@@ -31,8 +31,8 @@ export class AuthUserUseCase {
       expiresIn: "1d",
     });
 
-    const { id } = userExists;
+    const { id, name } = userExists;
 
-    return { id, email, acess_token };
+    return { user: { id, name, email }, acess_token };
   }
 }
