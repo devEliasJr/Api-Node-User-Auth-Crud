@@ -1,6 +1,6 @@
 ## Sistema Back End para Autentificação e CRUD de usuários
 
-Este projeto é uma API Rest construída em Node.js com Express, que é bem estruturada e organizada. Ela desempenha um papel essencial em muitos sistemas, cuidando da autenticação e das operações CRUD de usuários. Você poderá facilmente adicionar funcionalidades novas partir dessa base sólida.
+Este projeto é uma API Rest construída em Node.js com Express. O fluxo de trabalho desempenhado pelo projeto é essencial a inumeros sistemas de modo geral, pois, lida com a autenticação e as operações de CRUD de usuários.
 
 O projeto segue as melhores práticas de desenvolvimento em TypeScript, incluindo a divisão de funcionalidades da API em Controllers, Services e UseCases, além da utilização de arquivos DTO e roteamento bem definido.
 
@@ -13,9 +13,12 @@ Front End - React:
 ```
 ### Tecnologias
 - Node.js
+- TypeScript
 - Express
 - Prisma ORM
-- TypeScript
+- PostgreSQL
+- Docker com Docker Compose
+
 ## Regras Funcionais da API:
 
 - Cadastro de novos usuários
@@ -28,6 +31,17 @@ Front End - React:
 - Endpoints privados: Solicitação e verificação de tokens de acesso
 - As senhas inseridas serão devidamente criptografadas antes de serem armazenadas.
 
+## Endpoints da aplicação
+### Rotas Públicas
+- `POST - /users` - Registro de novos usuários
+- `POST - /users/auth` - Rota de Login e autentificação
+
+### Rotas Privadas - Authorization: Acess Token
+- `GET - /users` - Recuperar todos os usuarios da aplicação
+- `GET - /users/:id` - Recuperar um usuario
+- `DELETE - /users/:id`  - Deleta um usuario
+- `PUT - /users/:id` - Atualiza os dados de um usuario
+
 ## Como Iniciar o Projeto
 
 Para começar a utilizar este projeto, siga os passos abaixo:
@@ -38,33 +52,23 @@ Para começar a utilizar este projeto, siga os passos abaixo:
  git https://github.com/devEliasJr/Api-Node-User-Auth-Crud .
 ```
 
-### 2. Instale as dependências do projeto
+### 2. Crie um arquivo .env seguindo o padrao do .env.example(obrigatório)
 
-```bash
- npm install
-```
-
-### 3. No arquivo schema.prisma mude o provider para o seu banco de dados
-
-```bash
- provider = "nomedobanco"
-```
-
-### 4. Crie um arquivo .env seguindo o padrao do .env.example
-
-### 5. Execute as Migrations
+### 3. Execute e implante as migrações
 
 ```bash
  npx prisma migrate dev
 ```
 
-### 6 Inicie o servidor
+```bash
+ npx prisma migrate deploy
+```
+### 4. Inicie o container docker (Node + Postegres)
 
 ```bash
- npm run dev
+ docker compose up -d
 ```
-
-### 7. O projeto estará disponivel em:
+### 5. O projeto estará disponivel em:
 
 ```bash
  http://localhost:3333/
